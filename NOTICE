@@ -1,0 +1,17 @@
+Votura website (votura.io)
+Copyright 2026 Votura
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The Votura name and logos are trademarks of Votura. As section 6 of the Apache
+License states, the license grants no permission to use them. The logo artwork
+is not licensed under the Apache License: all rights reserved. This covers the
+files in brand/ and the logo graphics, icons and images derived from them in
+public/.
+
+Third-party components:
+
+- Sora font (public/assets/fonts/sora-*.woff2), SIL Open Font License 1.1,
+  see public/assets/fonts/OFL-Sora.txt
+- Source Serif 4 font (public/assets/fonts/source-serif-4-*.woff2), SIL Open
+  Font License 1.1, see public/assets/fonts/OFL-SourceSerif4.txt

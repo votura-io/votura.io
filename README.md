@@ -11,7 +11,7 @@ Source of the [Votura](https://votura.io) website: a single static page for a cr
 ```
 public/                  the website: this folder is what gets deployed
   index.html, 404.html
-  _headers               security headers (Cloudflare Pages, Netlify)
+  _headers               security headers (read by Netlify; Cloudflare Pages uses the same format)
   assets/css/            style.css (theme colors and type tokens at the top), noscript.css
   assets/js/             theme.js (saved theme, before first paint), main.js (switcher, copy button, lattice)
   assets/fonts/          Sora and Source Serif 4, SIL Open Font License 1.1
@@ -25,6 +25,8 @@ scripts/
   build-assets.sh        regenerate icons, avatars and social images from the SVGs
   brand.mjs              logo geometry and generators used by build-assets.sh
 docs/deployment.md       hosting, DNS and email setup
+netlify.toml             Netlify settings: publish public/, no build step, 404 page
+LICENSE, NOTICE          Apache License 2.0 and notices (brand/ has its own LICENSE)
 ```
 
 ## Run locally
@@ -55,14 +57,17 @@ The site ships three logo themes from the logo concepts: **Tribar** (default), *
 
 ## Deployment
 
-Deploy with Cloudflare Pages connected to this repository:
+The site is hosted on Netlify's free plan, deployed from this repository:
 
-- leave the build command empty;
-- set the build output directory to `public`;
-- set the production branch to `main`.
+- `netlify.toml` sets the publish directory to `public` and needs no build command.
+- Pushes to `main` deploy to production; other branches and pull requests get free previews.
+- The DNS for `votura.io` stays at Namecheap, next to the Proton Mail records.
 
-Every push to `main` then deploys automatically, and other branches get preview URLs. [`docs/deployment.md`](docs/deployment.md) covers the full setup: the custom domain, the `www` redirect, and email routing for contact@votura.io.
+[`docs/deployment.md`](docs/deployment.md) covers the full setup, the free-tier credit budget, and the alternatives that were considered.
 
 ## License
 
-Copyright © 2026 Votura. All rights reserved; see [`LICENSE`](LICENSE). The fonts in `public/assets/fonts/` are third-party works under the SIL Open Font License 1.1.
+The code in this repository is licensed under the [Apache License 2.0](LICENSE); see also [`NOTICE`](NOTICE). The exceptions:
+
+- **Brand:** the Votura name and logos are not licensed. Apache-2.0 grants no trademark rights (section 6), and the logo artwork is © Votura, all rights reserved. That covers [`brand/`](brand/LICENSE) and the logo graphics, icons and images derived from it in `public/`.
+- **Fonts:** the fonts in `public/assets/fonts/` are third-party works under the SIL Open Font License 1.1.

@@ -1,0 +1,11 @@
+# Netlify configuration for votura.io (see docs/deployment.md).
+# No build step: Netlify publishes the static files in public/ as they are.
+[build]
+  publish = "public"
+
+# Serve the site's own 404 page for any path without a matching file.
+# Existing files are served first, so this rule never hides real pages.
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404

@@ -1,6 +1,6 @@
 """Local preview of public/ with the same response headers as production.
 
-Reads the "/*" block of public/_headers (Cloudflare Pages format) and adds those
+Reads the "/*" block of public/_headers (Netlify / Cloudflare Pages format) and adds those
 headers to every response, so the Content-Security-Policy is enforced locally too.
 
 Usage: python3 scripts/serve.py [port]    (default port 8765)
@@ -38,7 +38,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         super().end_headers()
 
     def send_error(self, code, message=None, explain=None):
-        # Serve the site's own 404 page, as Cloudflare Pages does.
+        # Serve the site's own 404 page, as the netlify.toml rule does in production.
         if code == 404 and (ROOT / "404.html").exists():
             body = (ROOT / "404.html").read_bytes()
             self.send_response(404)

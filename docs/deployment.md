@@ -1,107 +1,119 @@
 # Deploying votura.io
 
-The site is static: deploying means serving the `public/` folder. The domain `votura.io` is registered at Namecheap; the public contact address is `contact@votura.io`.
+The site is static: deploying it means publishing the `public/` folder. It is hosted on **Netlify's free plan** and deployed from this public GitHub repository.
 
-## Choosing a host
+The domain `votura.io` stays registered at Namecheap, and so does its DNS. Namecheap's DNS also holds the records that make Proton Mail work for `@votura.io`.
 
-Free-tier terms below were checked against each provider's documentation in October 2026.
+## Why Netlify
 
-| Host | Free tier | Company site allowed? | Custom headers | DNS stays at Namecheap? |
+Checked against each provider's documentation in October 2026:
+
+| | Netlify Free (chosen) | Cloudflare Pages | GitHub Pages | Vercel Hobby |
 | --- | --- | --- | --- | --- |
-| **Cloudflare Pages** (recommended) | Static requests and bandwidth unlimited; 20,000 files, 25 MiB per file | Yes | Yes (`_headers`) | No, nameservers move to Cloudflare |
-| GitHub Pages | Public repository only; 1 GB site, 100 GB/month soft bandwidth limit | Grey zone (see below) | No | Yes |
-| Netlify Free | 300 credits/month (about 15 GB of bandwidth, or 20 deploys); sites pause when credits run out | Yes | Yes | Yes |
-| Vercel Hobby | n/a | **No**: Hobby is "non-commercial personal use only" | n/a | n/a |
+| DNS for votura.io | Stays at Namecheap (2 new records) | Must move to Cloudflare | Stays at Namecheap | n/a |
+| Deploys from this repository | Yes, because it is public | Yes, even if private | Public repositories only (free plan) | n/a |
+| Free-tier limit | 300 credits a month; all projects pause when they run out | Static traffic not metered | 100 GB/month soft bandwidth limit | n/a |
+| Custom headers (`_headers`) | Yes | Yes | No | n/a |
+| Company site allowed | Yes | Yes | Grey zone: not for running an online business | No: non-commercial use only |
 
-Cloudflare is the recommendation:
+- **Mail stays untouched.** Proton Mail relies on DNS records at Namecheap: MX, SPF, DKIM, DMARC and a verification record. With Netlify they stay where they are. Cloudflare Pages needs the whole DNS zone, so those records would have to be copied over first (see *Alternatives*).
+- **Why the repository is public.** Netlify's free plan only deploys private repositories owned by a personal account. Private organization repositories, such as `votura-io/votura.io`, need the Pro plan.
 
-- its static traffic is not metered;
-- its terms have no non-commercial clause;
-- it works with this private repository;
-- its free Email Routing makes `contact@votura.io` work.
+### Netlify credits
 
-The cost is moving the domain's DNS from Namecheap to Cloudflare. The domain stays registered and renewed at Namecheap.
+The free plan includes 300 credits a month. Costs:
 
-## Cloudflare Pages
+| What | Credits |
+| --- | --- |
+| Production deploy | 15 each |
+| Bandwidth | 20 per GB |
+| Requests | 2 per 10,000 |
+| Deploy previews, branch deploys | Free |
 
-1. **Add the domain to Cloudflare.**
-   1. Create a free account at <https://dash.cloudflare.com>.
-   2. Choose *Add a domain*, enter `votura.io` and pick the Free plan.
-   3. If the scan imports Namecheap's parking records (a `www` CNAME to `parkingpage.namecheap.com`, or a URL redirect), delete them.
-2. **Point Namecheap at Cloudflare.**
-   1. If DNSSEC is on (Namecheap: Domain List → Manage → Advanced DNS → DNSSEC), turn it off first. Changing nameservers with DNSSEC active can take the domain offline.
-   2. In Namecheap, go to Domain List → Manage → Nameservers and choose *Custom DNS*.
-   3. Enter the two `…ns.cloudflare.com` names that Cloudflare shows and confirm with the green check mark.
-   4. Activation usually takes minutes; Namecheap allows up to 24 hours.
-3. **Connect this repository.**
-   1. Go to Workers & Pages → Create application → Pages → *Connect to Git*.
-   2. Sign in with GitHub and give the Cloudflare Pages app access to the `votura-io` organization (*Install & Authorize*).
-   3. Select `votura-io/votura.io` and choose *Begin setup*.
-   4. Enter these settings, then choose *Save and Deploy*:
-      - Project name: `votura`
-      - Production branch: `main`
-      - Framework preset: None
-      - Build command: leave empty
-      - Build output directory: `public`
-   5. Every push to `main` now deploys to production, and other branches get preview URLs on `*.votura.pages.dev`.
+A first visit to the site downloads about 91 KB in 10 requests (measured in October 2026), which costs roughly 0.004 credits:
 
-   Without Git, there are two other ways to deploy:
-   - Drag the `public` folder into the dashboard (*Drag and drop your files*). A drag-and-drop project can't be connected to Git later.
-   - Use the terminal:
-     ```sh
-     npx wrangler login
-     npx wrangler pages project create votura --production-branch main
-     npx wrangler pages deploy public --project-name votura
-     ```
-4. **Attach the domain.** In the Pages project, go to Custom domains → *Set up a custom domain* and enter `votura.io`. Cloudflare creates the DNS record and the TLS certificate itself.
-5. **Redirect `www` to `votura.io`.** Follow <https://developers.cloudflare.com/pages/how-to/www-redirect/>. It takes a proxied `www` DNS record plus a redirect rule.
-6. **Make `contact@votura.io` work.**
-   1. In the Cloudflare dashboard, open `votura.io` → *Email Routing* and enable it. Cloudflare adds the MX, SPF and DKIM records itself.
-   2. Add the inbox that should receive the mail as a destination, then confirm it via the verification email Cloudflare sends.
-   3. Create a routing rule: custom address `contact`, action *Send to an email*, with that inbox as the destination.
-   4. Send a test from a different account.
+| Production deploys per month | Credits left | First visits that fit |
+| --- | --- | --- |
+| 0 | 300 | about 78,000 |
+| 5 | 225 | about 59,000 |
+| 10 | 150 | about 39,000 |
 
-   Email Routing only receives mail; see *Later* for sending as `contact@votura.io`.
-7. **Check.** Run `curl -sI https://votura.io | grep -i content-security`; it should print the policy from `public/_headers`.
-   - If you turn on Cloudflare Web Analytics, add its hosts to that policy first.
-   - If the address or the *Copy address* button looks wrong after deployment, check whether *Email Address Obfuscation* is enabled for the zone. It rewrites email addresses in the HTML, so turn it off if so.
+If the credits run out, Netlify pauses **every** project of the team until the next cycle, and visitors see a "Site not available" page. Every push to `main` is a production deploy, so group changes before pushing. Pushes to other branches and pull requests only create free deploy previews.
 
-Cloudflare's documentation now points new projects to Workers rather than Pages. Pages is still supported and is the simpler fit for a static site, because `404.html` is used automatically. With Workers, the custom 404 page needs a `wrangler.jsonc` containing `"assets": {"directory": "./public", "not_found_handling": "404-page"}`.
+## Setup
 
-## GitHub Pages (alternative, DNS stays at Namecheap)
+### 1. Make the repository public
 
-Trade-offs:
-- GitHub's free plan only publishes **public** repositories, so this repository would have to be made public (or the organization upgraded).
-- GitHub Pages cannot send the headers in `public/_headers`.
-- GitHub's terms say Pages is not meant "to run your online business" or for sites "primarily directed at … commercial transactions". An informational company page is arguably fine, but that is a judgment call.
+On GitHub, go to `votura-io/votura.io` → Settings → General → Danger Zone → *Change repository visibility* → Public.
 
-1. The site lives in `public/`, so deploy it with GitHub Actions:
-   1. Go to Settings → Pages → Source and choose *GitHub Actions*.
-   2. Add a workflow that uploads `public/`. GitHub's *Static HTML* starter works if its upload path is changed to `public`.
-2. Set the custom domain to `votura.io` in the same settings page.
-3. In Namecheap, go to Domain List → Manage → Advanced DNS. Delete the parking records, then add these:
+### 2. Create the Netlify project
 
-   | Type | Host | Value |
-   | --- | --- | --- |
-   | A | `@` | `185.199.108.153` |
-   | A | `@` | `185.199.109.153` |
-   | A | `@` | `185.199.110.153` |
-   | A | `@` | `185.199.111.153` |
-   | AAAA (optional) | `@` | `2606:50c0:8000::153`, `…8001::153`, `…8002::153`, `…8003::153` |
-   | CNAME | `www` | `votura-io.github.io.` |
+1. Sign in at <https://app.netlify.com> with GitHub.
+2. On the Projects page, choose *Add new project* → *Import an existing project* → GitHub. Authorize the Netlify app and give it access to the `votura-io` organization.
+3. Pick `votura-io/votura.io` and deploy branch `main`.
+   - Leave the build command empty.
+   - The repository's `netlify.toml` sets the publish directory to `public` and overrides the dashboard fields.
+4. Make the project public; new projects start private. Go to Project configuration → General → Visitor access → *Project visibility*.
+5. Optionally, rename the project, which changes its `*.netlify.app` address.
 
-4. Verify the domain for the organization (Settings → Pages → *Add a domain*). Add the `_github-pages-challenge-…` TXT record it shows at Namecheap and keep the record in place. This stops anyone else from claiming the domain on GitHub.
-5. Once the DNS check passes, tick *Enforce HTTPS*.
-6. Forward email.
-   1. In Namecheap, go to Advanced DNS → Mail Settings and choose *Email Forwarding*.
-   2. Then go to the Domain tab → Redirect Email → *Add Forwarder*, and forward `contact` to the receiving inbox.
-   3. This only works while Namecheap hosts the DNS.
+### 3. Connect votura.io
+
+1. In the Netlify project, go to Domain management → *Add a domain* and enter `votura.io`.
+   - Netlify adds `www.votura.io` as well.
+   - When Netlify offers to manage the DNS, decline: the DNS stays at Namecheap.
+2. In Namecheap, go to Domain List → Manage → Advanced DNS → Host records.
+   - **Leave the Proton Mail records as they are:**
+     - the two MX records;
+     - the two TXT records on `@` (`protonmail-verification=…` and `v=spf1 …`);
+     - the CNAME records `protonmail._domainkey`, `protonmail2._domainkey` and `protonmail3._domainkey`;
+     - the TXT record `_dmarc`.
+   - Delete any parking records on `@` or `www`, such as a URL Redirect or a CNAME to `parkingpage.namecheap.com`.
+   - Add these two records:
+
+     | Type | Host | Value |
+     | --- | --- | --- |
+     | ALIAS Record | `@` | `apex-loadbalancer.netlify.com` |
+     | CNAME Record | `www` | `<project>.netlify.app` (shown in Netlify's domain settings) |
+
+     If no ALIAS type is offered, use an A Record on `@` pointing to `75.2.60.5` instead. Never put a CNAME on `@`: it cannot coexist with the mail records.
+3. Wait for DNS to update; this takes minutes to a few hours. Netlify then issues a Let's Encrypt certificate (Domain management → HTTPS). If that stalls, use *Verify DNS configuration* there.
+4. Keep `votura.io` as the primary domain; Netlify redirects `www` to it.
+   - The site's canonical URLs (`index.html`, `sitemap.xml`, `security.txt`) all use the bare domain.
+   - Netlify recommends `www` as the primary domain with external DNS, because the bare domain goes through a load balancer instead of its CDN. That makes little difference for a site this small.
+
+### 4. Check
+
+- `curl -sI https://votura.io | grep -i content-security` prints the policy from `public/_headers`.
+- <https://votura.io/no-such-page> shows the site's 404 page.
+- Send an email to `contact@votura.io` and reply from it. The address must exist in Proton, because Proton only accepts mail for addresses that were added there.
+
+## Day to day
+
+- `python3 scripts/serve.py` previews the site locally at <http://localhost:8765>, with the production headers.
+- Merging or pushing to `main` deploys to production (15 credits).
+- Other branches and pull requests get free preview deploys.
+- Watch credit usage in the team's billing settings.
+
+## Alternatives
+
+**Cloudflare Pages** has unmetered static hosting and deploys private repositories. Use it if Netlify's credit limit ever becomes a problem. It requires moving the DNS:
+
+1. Add `votura.io` to Cloudflare (Free plan) but don't change the nameservers yet.
+2. Make sure every Proton record exists in Cloudflare. Copy them from Namecheap, or from Proton's *Domain names* settings.
+3. Set the three `protonmail*._domainkey` CNAME records to **DNS only**. Proton's guide says they don't work when proxied.
+4. Do **not** enable Cloudflare Email Routing. It replaces the MX records and would take the mail away from Proton.
+5. Switch the nameservers at Namecheap (Domain List → Manage → Nameservers → Custom DNS).
+6. Connect the repository: Workers & Pages → Create application → Pages → *Connect to Git*. Leave the build command empty and set the output directory to `public`.
+7. Delete the Netlify records from step 3 once the site runs on Cloudflare.
+
+**GitHub Pages** keeps the DNS at Namecheap too, but it has three drawbacks:
+- it cannot send the headers in `_headers`;
+- it needs a GitHub Actions workflow to publish `public/`;
+- GitHub's terms say Pages is not meant for running an online business.
+
+**Vercel Hobby** is restricted to non-commercial use, so it is not an option for a company site.
 
 ## Later
 
-- **Server-side features** (a contact form, an API): Cloudflare Workers Paid starts at $5 per month. The static site does not need it.
-- **Sending mail as `contact@votura.io`:**
-  - Zoho Mail has a free plan: up to 5 users, web and mobile apps only. It needs its own MX records, so it replaces Email Routing rather than running alongside it.
-  - A paid mailbox (Google Workspace, Fastmail, Proton) is the cleaner option.
-- **Taking payments:** Cloudflare's self-serve terms (§2.2.1(h)) bar collecting card details on a site that uses free services. Use the payment provider's hosted checkout page, or upgrade.
+- **Netlify paid plans:** Personal at $9 a month for 1,000 credits, or Pro from $20 a month for 3,000 credits (October 2026).
 - **Legal pages:** depending on where Votura is registered, a legal notice (for example an Impressum in Germany or Austria) and a privacy notice may be required. The site sets no cookies and loads nothing from third parties, so the privacy notice can be short.
