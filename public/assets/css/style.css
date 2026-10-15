@@ -1,9 +1,10 @@
 /* ==========================================================================
    Votura: site styles
 
-   The theme comes from data-brand on <html>: "tribar" (default), "monolith"
-   or "blueprint". A theme swaps the logo mark and the color tokens below;
-   layout and type are shared.
+   The logo and palette come from data-brand on <html>. The site uses
+   "tribar"; "monolith" and "blueprint" are kept so scripts/set-brand.sh can
+   switch the whole site to another logo. A brand only swaps the logo mark and
+   the color tokens below; layout and type are shared.
    ========================================================================== */
 
 /* Fonts: self-hosted, SIL Open Font License 1.1 (see assets/fonts/OFL-*.txt) */
@@ -60,7 +61,7 @@
    Tokens
    -------------------------------------------------------------------------- */
 
-/* Tribar (logo B): three-tone mark on midnight blue. The default theme. */
+/* Tribar (logo B): three-tone mark on midnight blue. The site's logo. */
 :root {
   --field: #10112B;
   --field-deep: #0A0B1E;
@@ -579,79 +580,6 @@ a:hover {
   }
 }
 
-@media (max-width: 40rem) {
-  .site-footer {
-    padding-bottom: 6rem; /* room for the theme switcher */
-  }
-}
-
-/* --------------------------------------------------------------------------
-   Theme switcher (bottom-right corner)
-   -------------------------------------------------------------------------- */
-
-.theme-switcher {
-  position: fixed;
-  right: max(1rem, env(safe-area-inset-right));
-  bottom: max(1rem, env(safe-area-inset-bottom));
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.25rem 0.25rem 0.875rem;
-  border: 1px solid rgb(255 255 255 / 0.18);
-  border-radius: 999px;
-  background: rgb(6 7 20 / 0.72);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  color: rgb(255 255 255 / 0.82);
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-.theme-switcher[hidden] {
-  display: none;
-}
-
-.theme-label {
-  margin-right: 0.25rem;
-}
-
-.theme-switcher button {
-  display: grid;
-  place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: none;
-  cursor: pointer;
-}
-
-.theme-switcher img {
-  width: 1.625rem;
-  height: 1.625rem;
-  border-radius: 0.375rem;
-  opacity: 0.7;
-  transition: opacity 150ms ease;
-}
-
-.theme-switcher button:hover img,
-.theme-switcher button[aria-pressed="true"] img {
-  opacity: 1;
-}
-
-.theme-switcher button[aria-pressed="true"] img {
-  outline: 2px solid #FFFFFF;
-  outline-offset: 2px;
-}
-
-.theme-switcher button:focus-visible {
-  outline: 2px solid #FFFFFF;
-  outline-offset: 0;
-}
-
 /* --------------------------------------------------------------------------
    404
    -------------------------------------------------------------------------- */
@@ -706,8 +634,7 @@ a:hover {
   .actions,
   .lattice-figure,
   .copy,
-  .skip-link,
-  .theme-switcher {
+  .skip-link {
     display: none;
   }
   .lead,

@@ -4,7 +4,6 @@
 // B Tribar, D Monolith, E Blueprint) are the source of truth; this script reads
 // their path data and writes:
 //   brand/<name>/web/favicon.svg        favicon (mark enlarged for small sizes)
-//   public/assets/img/themes/<name>.svg same icon, used by the theme switcher
 //   brand/<name>/web/site.webmanifest   web app manifest with the brand color
 //   public/assets/img/lattice.svg       still of the lattice figure, shown without JavaScript
 //   <tmp>/<name>-touch.svg              full-bleed icon for apple-touch-icon.png
@@ -188,12 +187,10 @@ if (process.argv[2] === '--lockup') {
   const [root, tmp] = process.argv.slice(2);
   if (!root || !tmp) throw new Error('usage: node scripts/brand.mjs <project-root> <tmp-dir>');
   writeFileSync(join(root, 'public/assets/img/lattice.svg'), latticeSvg());
-  mkdirSync(join(root, 'public/assets/img/themes'), { recursive: true });
   for (const brand of Object.keys(BRANDS)) {
     const web = join(root, 'brand', brand, 'web');
     mkdirSync(web, { recursive: true });
     writeFileSync(join(web, 'favicon.svg'), icon(brand, { large: true }));
-    writeFileSync(join(root, 'public/assets/img/themes', `${brand}.svg`), icon(brand, { large: true }));
     writeFileSync(join(web, 'site.webmanifest'), manifest(brand));
     writeFileSync(join(tmp, `${brand}-touch.svg`), icon(brand, { bleed: true }));
     writeFileSync(join(tmp, `${brand}-avatar.svg`), icon(brand, { avatar: true }));

@@ -1,53 +1,12 @@
 /* Votura: site behaviour.
  *
- * 1. Theme switcher (bottom-right corner): Tribar, Monolith or Blueprint.
- *    The choice is saved per visitor; theme.js applies it before first paint.
- * 2. Copy button for the contact address, and the footer year.
- * 3. The hero figure: Lagrange–Gauss reduction of a basis of the hexagonal lattice.
+ * 1. Copy button for the contact address, and the footer year.
+ * 2. The hero figure: Lagrange–Gauss reduction of a basis of the hexagonal lattice.
  */
 (() => {
   'use strict';
 
-  /* 1. Theme switcher ------------------------------------------------------ */
-
-  const THEME_COLORS = { tribar: '#10112B', monolith: '#5A2BF0', blueprint: '#2B1585' };
-  const root = document.documentElement;
-  const switcher = document.querySelector('[data-theme-switcher]');
-  const iconLink = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
-  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-
-  function applyTheme(name, save) {
-    if (!THEME_COLORS[name]) return;
-    root.setAttribute('data-brand', name);
-    if (themeColorMeta) themeColorMeta.setAttribute('content', THEME_COLORS[name]);
-    if (switcher) {
-      switcher.querySelectorAll('[data-theme]').forEach((button) => {
-        const active = button.getAttribute('data-theme') === name;
-        button.setAttribute('aria-pressed', String(active));
-        const img = button.querySelector('img');
-        if (active && img && iconLink) iconLink.setAttribute('href', img.src);
-      });
-    }
-    if (save) {
-      try {
-        window.localStorage.setItem('votura-theme', name);
-      } catch (error) {
-        /* Storage unavailable: the theme still applies until the page is left. */
-      }
-    }
-    document.dispatchEvent(new CustomEvent('votura:themechange'));
-  }
-
-  if (switcher) {
-    switcher.hidden = false;
-    switcher.addEventListener('click', (event) => {
-      const button = event.target.closest('[data-theme]');
-      if (button) applyTheme(button.getAttribute('data-theme'), true);
-    });
-    applyTheme(root.getAttribute('data-brand') || 'tribar', false);
-  }
-
-  /* 2. Copy button and footer year ----------------------------------------- */
+  /* 1. Copy button and footer year ----------------------------------------- */
 
   const year = String(new Date().getFullYear());
   document.querySelectorAll('[data-year]').forEach((el) => {
@@ -79,7 +38,7 @@
     });
   }
 
-  /* 3. The lattice figure -------------------------------------------------- */
+  /* 2. The lattice figure -------------------------------------------------- */
 
   const canvas = document.getElementById('lattice');
   if (canvas && canvas.getContext) initLattice(canvas);
@@ -450,7 +409,6 @@
       colors = readColors();
       render();
     };
-    document.addEventListener('votura:themechange', refreshColors);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(refreshColors);
 
     // Start the first reduction when the figure comes into view; replays only run while it is visible.
