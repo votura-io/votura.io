@@ -1,0 +1,719 @@
+/* ==========================================================================
+   Votura: site styles
+
+   The theme comes from data-brand on <html>: "tribar" (default), "monolith"
+   or "blueprint". A theme swaps the logo mark and the color tokens below;
+   layout and type are shared.
+   ========================================================================== */
+
+/* Fonts: self-hosted, SIL Open Font License 1.1 (see assets/fonts/OFL-*.txt) */
+@font-face {
+  font-family: "Sora";
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("../fonts/sora-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Sora";
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("../fonts/sora-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../fonts/source-serif-4-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../fonts/source-serif-4-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/source-serif-4-italic-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/source-serif-4-italic-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* --------------------------------------------------------------------------
+   Tokens
+   -------------------------------------------------------------------------- */
+
+/* Tribar (logo B): three-tone mark on midnight blue. The default theme. */
+:root {
+  --field: #10112B;
+  --field-deep: #0A0B1E;
+  --on-field: #FFFFFF;
+  --on-field-muted: rgb(255 255 255 / 0.78);
+  --rule: rgb(255 255 255 / 0.14);
+  --control-line: rgb(255 255 255 / 0.32);
+  --accent: #5552FF;
+  --highlight: #C3C8FF;
+
+  --tri-1: #5552FF;
+  --tri-2: #C3C8FF;
+  --tri-3: #2B2AA6;
+
+  /* Figure colors, read by main.js */
+  --fig-point: rgb(195 200 255 / 0.55);
+  --fig-vector: #C3C8FF;
+  --fig-fill: rgb(85 82 255 / 0.4);
+  --fig-ghost: rgb(195 200 255 / 0.5);
+
+  --font-display: "Sora", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-text: "Source Serif 4", ui-serif, Georgia, Cambria, "Times New Roman", serif;
+
+  --wrap: 75rem;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --section-space: clamp(4rem, 2.75rem + 5vw, 7rem);
+  --radius: 4px;
+}
+
+/* Monolith (logo D): solid white mark on violet. */
+:root[data-brand="monolith"] {
+  --field: #5A2BF0;
+  --field-deep: #4520C9;
+  --on-field-muted: rgb(255 255 255 / 0.88);
+  --rule: rgb(255 255 255 / 0.24);
+  --control-line: rgb(255 255 255 / 0.5);
+  --accent: #FFFFFF;
+  --highlight: #DCD1FF;
+  --fig-point: rgb(255 255 255 / 0.6);
+  --fig-vector: #FFFFFF;
+  --fig-fill: rgb(255 255 255 / 0.2);
+  --fig-ghost: rgb(255 255 255 / 0.6);
+}
+
+/* Blueprint (logo E): white line mark on deep indigo. */
+:root[data-brand="blueprint"] {
+  --field: #2B1585;
+  --field-deep: #1F0F66;
+  --on-field-muted: rgb(255 255 255 / 0.8);
+  --rule: rgb(255 255 255 / 0.16);
+  --control-line: rgb(255 255 255 / 0.34);
+  --accent: #B9A8FF;
+  --highlight: #B9A8FF;
+  --fig-point: rgb(255 255 255 / 0.55);
+  --fig-vector: #FFFFFF;
+  --fig-fill: rgb(185 168 255 / 0.26);
+  --fig-ghost: rgb(255 255 255 / 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--field);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--field);
+  color: var(--on-field);
+  font-family: var(--font-text);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 250ms ease;
+}
+
+svg,
+canvas,
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--on-field);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+::selection {
+  background: var(--highlight);
+  color: var(--field);
+}
+
+:focus-visible {
+  outline: 2px solid var(--on-field);
+  outline-offset: 3px;
+}
+
+.wrap {
+  width: min(100% - 2 * var(--gutter), var(--wrap));
+  margin-inline: auto;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: var(--gutter);
+  z-index: 30;
+  padding: 0.625rem 1rem;
+  border-radius: var(--radius);
+  background: var(--on-field);
+  color: var(--field);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   Logo lockup (inline SVG with all three marks; CSS shows the active one)
+   -------------------------------------------------------------------------- */
+
+.lockup .mark {
+  display: none;
+}
+
+:root:not([data-brand]) .lockup .mark--tribar,
+:root[data-brand="tribar"] .lockup .mark--tribar,
+:root[data-brand="monolith"] .lockup .mark--monolith,
+:root[data-brand="blueprint"] .lockup .mark--blueprint {
+  display: inline;
+}
+
+.mark--blueprint path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3.3;
+  stroke-linejoin: round;
+}
+
+.mark--monolith path,
+.lockup .wordmark {
+  fill: currentColor;
+}
+
+.mark--tribar .t1 { fill: var(--tri-1); }
+.mark--tribar .t2 { fill: var(--tri-2); }
+.mark--tribar .t3 { fill: var(--tri-3); }
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 5.5rem;
+}
+
+.brand {
+  display: inline-flex;
+  padding-block: 0.5rem;
+  border-radius: var(--radius);
+  color: inherit;
+}
+
+.brand .lockup {
+  width: auto;
+  height: 2.25rem;
+}
+
+.site-nav ul {
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding-block: 0.75rem;
+  color: var(--on-field-muted);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: var(--on-field);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.45em;
+}
+
+@media (max-width: 40rem) {
+  .brand .lockup {
+    height: 2rem;
+  }
+  .site-nav .optional {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+
+.hero {
+  padding-block: clamp(1.5rem, 0.5rem + 4vw, 4rem) var(--section-space);
+}
+
+.hero .wrap {
+  display: grid;
+  gap: clamp(3rem, 6vw, 4.5rem);
+  align-items: center;
+}
+
+@media (min-width: 60rem) {
+  .hero .wrap {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 1.5rem + 3.7vw, 4.25rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.lead {
+  max-width: 33em;
+  margin: 1.75rem 0 0;
+  color: var(--on-field-muted);
+  font-size: clamp(1.1875rem, 1.1rem + 0.35vw, 1.375rem);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2.5rem 0 0;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.375rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.button-solid {
+  background: var(--on-field);
+  color: var(--field);
+}
+
+.button-solid:hover {
+  background: var(--highlight);
+}
+
+.button-outline {
+  border-color: var(--control-line);
+  background: transparent;
+  color: var(--on-field);
+}
+
+.button-outline:hover {
+  border-color: var(--on-field);
+}
+
+/* The lattice figure */
+.lattice-figure {
+  margin: 0;
+}
+
+.lattice-frame {
+  position: relative;
+  width: 100%;
+  max-width: 30rem;
+  aspect-ratio: 1 / 1;
+  margin-inline: auto;
+}
+
+.lattice-frame canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.lattice-figure figcaption {
+  max-width: 30rem;
+  margin: 0.75rem auto 0;
+  color: var(--on-field-muted);
+  font-size: 0.9375rem;
+  font-style: italic;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Sections
+   -------------------------------------------------------------------------- */
+
+.section {
+  padding-bottom: var(--section-space);
+}
+
+.section .wrap {
+  display: grid;
+  gap: 2rem clamp(2rem, 5vw, 4rem);
+  padding-top: var(--section-space);
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 60rem) {
+  .section .wrap {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  }
+}
+
+.section h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.35rem + 1.4vw, 2.375rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.card-list {
+  display: grid;
+  gap: 2.75rem clamp(2rem, 4vw, 3.5rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 40rem) {
+  .card-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.card-list li::before {
+  content: "";
+  display: block;
+  width: 2.25rem;
+  height: 3px;
+  margin-bottom: 1.25rem;
+  background: var(--accent);
+}
+
+.card-list h3 {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.card-list p {
+  margin: 0;
+  color: var(--on-field-muted);
+  text-wrap: pretty;
+}
+
+/* Contact */
+.contact-lead {
+  max-width: 32em;
+  margin: 0;
+  color: var(--on-field-muted);
+  font-size: clamp(1.1875rem, 1.1rem + 0.35vw, 1.375rem);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.contact-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin: 2rem 0 0;
+}
+
+.email {
+  color: var(--on-field);
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 0.85rem + 3.6vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  text-decoration: underline;
+  text-decoration-color: var(--control-line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  overflow-wrap: anywhere;
+}
+
+.email:hover {
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+}
+
+.copy {
+  min-width: 9.5rem;
+}
+
+.copy[hidden] {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  padding-block: 3rem;
+  background: var(--field-deep);
+  color: var(--on-field-muted);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  transition: background-color 250ms ease;
+}
+
+.site-footer .wrap {
+  display: grid;
+  gap: 1.5rem 3rem;
+  align-items: start;
+}
+
+@media (min-width: 60rem) {
+  .site-footer .wrap {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr);
+  }
+}
+
+.site-footer .brand {
+  padding-block: 0;
+}
+
+.site-footer .lockup {
+  width: auto;
+  height: 1.75rem;
+}
+
+.site-footer p {
+  max-width: 30em;
+  margin: 0;
+}
+
+@media (min-width: 60rem) {
+  .footer-meta {
+    justify-self: end;
+    text-align: right;
+  }
+}
+
+@media (max-width: 40rem) {
+  .site-footer {
+    padding-bottom: 6rem; /* room for the theme switcher */
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Theme switcher (bottom-right corner)
+   -------------------------------------------------------------------------- */
+
+.theme-switcher {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.25rem 0.25rem 0.875rem;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 999px;
+  background: rgb(6 7 20 / 0.72);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: rgb(255 255 255 / 0.82);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.theme-switcher[hidden] {
+  display: none;
+}
+
+.theme-label {
+  margin-right: 0.25rem;
+}
+
+.theme-switcher button {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+
+.theme-switcher img {
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: 0.375rem;
+  opacity: 0.7;
+  transition: opacity 150ms ease;
+}
+
+.theme-switcher button:hover img,
+.theme-switcher button[aria-pressed="true"] img {
+  opacity: 1;
+}
+
+.theme-switcher button[aria-pressed="true"] img {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+.theme-switcher button:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 0;
+}
+
+/* --------------------------------------------------------------------------
+   404
+   -------------------------------------------------------------------------- */
+
+.not-found {
+  padding-block: clamp(3rem, 2rem + 6vw, 7rem) clamp(5rem, 3rem + 8vw, 9rem);
+}
+
+.not-found .big-mark {
+  width: clamp(6rem, 4rem + 8vw, 9rem);
+  height: auto;
+  margin-bottom: 2.5rem;
+}
+
+.not-found h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.not-found p {
+  max-width: 32em;
+  margin: 1.25rem 0 0;
+  color: var(--on-field-muted);
+  font-size: 1.25rem;
+  line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   Preferences and print
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  html,
+  body,
+  .site-footer {
+    background: none;
+    color: #000;
+  }
+  .site-nav,
+  .actions,
+  .lattice-figure,
+  .copy,
+  .skip-link,
+  .theme-switcher {
+    display: none;
+  }
+  .lead,
+  .contact-lead,
+  .card-list p,
+  .site-footer {
+    color: #000;
+  }
+}

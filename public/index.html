@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" data-brand="tribar">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Votura | Cryptography research, consulting and engineering</title>
+  <meta name="description" content="Votura is a cryptography research and engineering company. We help teams design, review and build the cryptography their systems depend on, including the move to post-quantum cryptography.">
+  <link rel="canonical" href="https://votura.io/">
+  <meta name="theme-color" content="#10112B">
+  <meta name="color-scheme" content="dark">
+
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preload" href="assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/main.js" defer></script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Votura">
+  <meta property="og:url" content="https://votura.io/">
+  <meta property="og:title" content="Votura: cryptography, from proof to production">
+  <meta property="og:description" content="Votura is a cryptography research and engineering company. We help teams design, review and build the cryptography their systems depend on.">
+  <meta property="og:image" content="https://votura.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Votura logo and the line: Cryptography, from proof to production.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Votura",
+    "url": "https://votura.io/",
+    "logo": "https://votura.io/icon-512.png",
+    "email": "contact@votura.io",
+    "description": "Cryptography research, consulting and engineering."
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./" aria-label="Votura, home">
+        <svg class="lockup" viewBox="4 4 841.56 200" aria-hidden="true"><g class="mark mark--blueprint" transform="translate(7.671 7.671) scale(2.22463)" fill="none" stroke="currentColor" stroke-width="3.3" stroke-linejoin="round" display="none"><path d="M100 14.43L58.33 86.6L25 28.87L41.67 28.87L58.33 57.74L91.67 0Z"/><path d="M58.33 86.6L41.67 86.6L0 14.43L66.67 14.43L58.33 28.87L25 28.87Z"/><path d="M91.67 0L58.33 57.74L50 43.3L66.67 14.43L0 14.43L8.33 0Z"/></g><g class="mark mark--monolith" transform="translate(4 4) scale(2.3094)" fill="currentColor" display="none"><path d="M98.61 15.62L59.02 84.2L29.13 32.43L44.39 32.43L59.02 57.77L90.98 2.4Z"/><path d="M56.94 85.4L41.68 85.4L2.08 16.82L61.86 16.82L54.23 30.03L24.97 30.03Z"/><path d="M88.91 1.2L59.02 52.97L51.39 39.75L66.01 14.42L2.08 14.42L9.71 1.2Z"/></g><g class="mark mark--tribar" transform="translate(4 4) scale(2.3094)"><path class="t1" fill="#5552FF" d="M100 14.43L58.33 86.6L25 28.87L41.67 28.87L58.33 57.74L91.67 0Z"/><path class="t2" fill="#C3C8FF" d="M58.33 86.6L41.67 86.6L0 14.43L66.67 14.43L58.33 28.87L25 28.87Z"/><path class="t3" fill="#2B2AA6" d="M91.67 0L58.33 57.74L50 43.3L66.67 14.43L0 14.43L8.33 0Z"/></g><path class="wordmark" transform="translate(291.863 146)" fill="currentColor" d="M47.08 0 3.08 -99.54H25.69L63.38 -9.69H56.31L93.85 -99.54H116.15L72.62 0ZM163.38 1.85Q148.92 1.85 137.92 -2.77Q126.92 -7.38 120.77 -16.23Q114.62 -25.08 114.62 -38Q114.62 -50.92 120.77 -59.92Q126.92 -68.92 137.92 -73.54Q148.92 -78.15 163.38 -78.15Q177.85 -78.15 188.69 -73.54Q199.54 -68.92 205.69 -59.92Q211.85 -50.92 211.85 -38Q211.85 -25.08 205.69 -16.23Q199.54 -7.38 188.69 -2.77Q177.85 1.85 163.38 1.85ZM163.38 -13.54Q171.38 -13.54 177.77 -16.38Q184.15 -19.23 187.85 -24.69Q191.54 -30.15 191.54 -38Q191.54 -45.85 187.85 -51.46Q184.15 -57.08 177.85 -60Q171.54 -62.92 163.38 -62.92Q155.38 -62.92 148.92 -60Q142.46 -57.08 138.69 -51.54Q134.92 -46 134.92 -38Q134.92 -30.15 138.62 -24.69Q142.31 -19.23 148.77 -16.38Q155.23 -13.54 163.38 -13.54ZM220.15 -76.46H279.54V-60.92H220.15ZM239.85 -97.38H259.85V0H239.85ZM380.77 0H360.77V-76.46H380.77ZM361.85 -36.77 362 -31.54Q361.69 -29.38 360.46 -25.31Q359.23 -21.23 356.69 -16.62Q354.15 -12 350.15 -7.77Q346.15 -3.54 340.31 -0.85Q334.46 1.85 326.46 1.85Q320.15 1.85 314.08 0.31Q308 -1.23 303.08 -4.85Q298.15 -8.46 295.23 -14.62Q292.31 -20.77 292.31 -30.15V-76.46H312.31V-33.54Q312.31 -26.15 314.69 -21.92Q317.08 -17.69 321.69 -16Q326.31 -14.31 332.62 -14.31Q340.92 -14.31 346.92 -17.92Q352.92 -21.54 356.69 -26.77Q360.46 -32 361.85 -36.77ZM398.92 -76.46H418.92V0H398.92ZM448.31 -60Q439.69 -60 433.38 -56.69Q427.08 -53.38 423.23 -48.62Q419.38 -43.85 417.85 -39.38L417.69 -47.85Q417.85 -49.69 418.92 -53.31Q420 -56.92 422.15 -61.15Q424.31 -65.38 427.85 -69.31Q431.38 -73.23 436.46 -75.69Q441.54 -78.15 448.31 -78.15ZM497.85 1.69Q486.46 1.69 477.15 -3.31Q467.85 -8.31 462.38 -17.31Q456.92 -26.31 456.92 -38.15Q456.92 -50.31 462.46 -59.23Q468 -68.15 477.46 -73.15Q486.92 -78.15 498.92 -78.15Q512.15 -78.15 520.23 -72.85Q528.31 -67.54 532 -58.46Q535.69 -49.38 535.69 -38.15Q535.69 -31.38 533.54 -24.38Q531.38 -17.38 526.92 -11.46Q522.46 -5.54 515.23 -1.92Q508 1.69 497.85 1.69ZM504.31 -13.69Q513.38 -13.69 520 -16.77Q526.62 -19.85 530.15 -25.38Q533.69 -30.92 533.69 -38.15Q533.69 -46 530.08 -51.46Q526.46 -56.92 519.92 -59.77Q513.38 -62.62 504.31 -62.62Q491.54 -62.62 484.46 -55.92Q477.38 -49.23 477.38 -38.15Q477.38 -30.77 480.77 -25.31Q484.15 -19.85 490.23 -16.77Q496.31 -13.69 504.31 -13.69ZM533.69 -76.46H553.69V0H535.08Q535.08 0 534.69 -3Q534.31 -6 534 -10.62Q533.69 -15.23 533.69 -19.69Z"/></svg>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li class="optional"><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div class="hero-copy">
+          <h1 id="hero-title">Cryptography, from proof to production.</h1>
+          <p class="lead">Votura is a cryptography research and engineering company. We help teams design, review and build the cryptography their systems depend on, including the move to post-quantum cryptography.</p>
+          <p class="actions">
+            <a class="button button-solid" href="mailto:contact@votura.io">Email us</a>
+            <a class="button button-outline" href="#services">What we do</a>
+          </p>
+        </div>
+
+        <figure class="lattice-figure">
+          <div class="lattice-frame">
+            <canvas id="lattice" width="480" height="480" role="img" aria-label="A field of lattice points. A long, skewed pair of basis vectors is reduced step by step to a short pair that generates the same lattice."></canvas>
+          </div>
+          <figcaption>One lattice, two bases.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="services" aria-labelledby="services-title">
+      <div class="wrap">
+        <h2 id="services-title">What we do</h2>
+        <ul class="card-list">
+          <li>
+            <h3>Research and design</h3>
+            <p>New constructions and protocols for problems that off-the-shelf cryptography does not solve, each with a clear security argument.</p>
+          </li>
+          <li>
+            <h3>Consulting and review</h3>
+            <p>Independent advice on architecture, protocol choices and threat models, and careful review of designs and code before they ship.</p>
+          </li>
+          <li>
+            <h3>Implementation</h3>
+            <p>Well-tested implementations of cryptographic primitives and protocols, built to be correct, efficient and maintainable.</p>
+          </li>
+          <li>
+            <h3>Post-quantum transition</h3>
+            <p>Moving systems to post-quantum cryptography: finding what is exposed, choosing among the new standards, and rolling out changes step by step.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 id="contact-title">Get in touch</h2>
+        <div>
+          <p class="contact-lead">Tell us what you are working on. A short note is enough to start the conversation.</p>
+          <p class="contact-line">
+            <a class="email" href="mailto:contact@votura.io">contact@votura.io</a>
+            <button type="button" class="button button-outline copy" data-copy="contact@votura.io" hidden>Copy address</button>
+          </p>
+          <p class="visually-hidden" role="status" data-copy-status></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Votura, back to top">
+        <svg class="lockup" viewBox="4 4 841.56 200" aria-hidden="true"><g class="mark mark--blueprint" transform="translate(7.671 7.671) scale(2.22463)" fill="none" stroke="currentColor" stroke-width="3.3" stroke-linejoin="round" display="none"><path d="M100 14.43L58.33 86.6L25 28.87L41.67 28.87L58.33 57.74L91.67 0Z"/><path d="M58.33 86.6L41.67 86.6L0 14.43L66.67 14.43L58.33 28.87L25 28.87Z"/><path d="M91.67 0L58.33 57.74L50 43.3L66.67 14.43L0 14.43L8.33 0Z"/></g><g class="mark mark--monolith" transform="translate(4 4) scale(2.3094)" fill="currentColor" display="none"><path d="M98.61 15.62L59.02 84.2L29.13 32.43L44.39 32.43L59.02 57.77L90.98 2.4Z"/><path d="M56.94 85.4L41.68 85.4L2.08 16.82L61.86 16.82L54.23 30.03L24.97 30.03Z"/><path d="M88.91 1.2L59.02 52.97L51.39 39.75L66.01 14.42L2.08 14.42L9.71 1.2Z"/></g><g class="mark mark--tribar" transform="translate(4 4) scale(2.3094)"><path class="t1" fill="#5552FF" d="M100 14.43L58.33 86.6L25 28.87L41.67 28.87L58.33 57.74L91.67 0Z"/><path class="t2" fill="#C3C8FF" d="M58.33 86.6L41.67 86.6L0 14.43L66.67 14.43L58.33 28.87L25 28.87Z"/><path class="t3" fill="#2B2AA6" d="M91.67 0L58.33 57.74L50 43.3L66.67 14.43L0 14.43L8.33 0Z"/></g><path class="wordmark" transform="translate(291.863 146)" fill="currentColor" d="M47.08 0 3.08 -99.54H25.69L63.38 -9.69H56.31L93.85 -99.54H116.15L72.62 0ZM163.38 1.85Q148.92 1.85 137.92 -2.77Q126.92 -7.38 120.77 -16.23Q114.62 -25.08 114.62 -38Q114.62 -50.92 120.77 -59.92Q126.92 -68.92 137.92 -73.54Q148.92 -78.15 163.38 -78.15Q177.85 -78.15 188.69 -73.54Q199.54 -68.92 205.69 -59.92Q211.85 -50.92 211.85 -38Q211.85 -25.08 205.69 -16.23Q199.54 -7.38 188.69 -2.77Q177.85 1.85 163.38 1.85ZM163.38 -13.54Q171.38 -13.54 177.77 -16.38Q184.15 -19.23 187.85 -24.69Q191.54 -30.15 191.54 -38Q191.54 -45.85 187.85 -51.46Q184.15 -57.08 177.85 -60Q171.54 -62.92 163.38 -62.92Q155.38 -62.92 148.92 -60Q142.46 -57.08 138.69 -51.54Q134.92 -46 134.92 -38Q134.92 -30.15 138.62 -24.69Q142.31 -19.23 148.77 -16.38Q155.23 -13.54 163.38 -13.54ZM220.15 -76.46H279.54V-60.92H220.15ZM239.85 -97.38H259.85V0H239.85ZM380.77 0H360.77V-76.46H380.77ZM361.85 -36.77 362 -31.54Q361.69 -29.38 360.46 -25.31Q359.23 -21.23 356.69 -16.62Q354.15 -12 350.15 -7.77Q346.15 -3.54 340.31 -0.85Q334.46 1.85 326.46 1.85Q320.15 1.85 314.08 0.31Q308 -1.23 303.08 -4.85Q298.15 -8.46 295.23 -14.62Q292.31 -20.77 292.31 -30.15V-76.46H312.31V-33.54Q312.31 -26.15 314.69 -21.92Q317.08 -17.69 321.69 -16Q326.31 -14.31 332.62 -14.31Q340.92 -14.31 346.92 -17.92Q352.92 -21.54 356.69 -26.77Q360.46 -32 361.85 -36.77ZM398.92 -76.46H418.92V0H398.92ZM448.31 -60Q439.69 -60 433.38 -56.69Q427.08 -53.38 423.23 -48.62Q419.38 -43.85 417.85 -39.38L417.69 -47.85Q417.85 -49.69 418.92 -53.31Q420 -56.92 422.15 -61.15Q424.31 -65.38 427.85 -69.31Q431.38 -73.23 436.46 -75.69Q441.54 -78.15 448.31 -78.15ZM497.85 1.69Q486.46 1.69 477.15 -3.31Q467.85 -8.31 462.38 -17.31Q456.92 -26.31 456.92 -38.15Q456.92 -50.31 462.46 -59.23Q468 -68.15 477.46 -73.15Q486.92 -78.15 498.92 -78.15Q512.15 -78.15 520.23 -72.85Q528.31 -67.54 532 -58.46Q535.69 -49.38 535.69 -38.15Q535.69 -31.38 533.54 -24.38Q531.38 -17.38 526.92 -11.46Q522.46 -5.54 515.23 -1.92Q508 1.69 497.85 1.69ZM504.31 -13.69Q513.38 -13.69 520 -16.77Q526.62 -19.85 530.15 -25.38Q533.69 -30.92 533.69 -38.15Q533.69 -46 530.08 -51.46Q526.46 -56.92 519.92 -59.77Q513.38 -62.62 504.31 -62.62Q491.54 -62.62 484.46 -55.92Q477.38 -49.23 477.38 -38.15Q477.38 -30.77 480.77 -25.31Q484.15 -19.85 490.23 -16.77Q496.31 -13.69 504.31 -13.69ZM533.69 -76.46H553.69V0H535.08Q535.08 0 534.69 -3Q534.31 -6 534 -10.62Q533.69 -15.23 533.69 -19.69Z"/></svg>
+      </a>
+      <p>The Votura mark is a Penrose tribar: every corner is a genuine corner, yet the whole cannot exist.</p>
+      <p class="footer-meta">© <span data-year>2026</span> Votura<br><a href="mailto:contact@votura.io">contact@votura.io</a></p>
+    </div>
+  </footer>
+
+  <!-- Theme switcher: delete this block once the logo is final (see README). -->
+  <div class="theme-switcher" role="group" aria-labelledby="theme-label" data-theme-switcher hidden>
+    <span class="theme-label" id="theme-label">Theme</span>
+    <button type="button" data-theme="tribar" aria-pressed="true" title="Tribar"><img src="assets/img/themes/tribar.svg" alt="" width="28" height="28"><span class="visually-hidden">Tribar</span></button>
+    <button type="button" data-theme="monolith" aria-pressed="false" title="Monolith"><img src="assets/img/themes/monolith.svg" alt="" width="28" height="28"><span class="visually-hidden">Monolith</span></button>
+    <button type="button" data-theme="blueprint" aria-pressed="false" title="Blueprint"><img src="assets/img/themes/blueprint.svg" alt="" width="28" height="28"><span class="visually-hidden">Blueprint</span></button>
+  </div>
+</body>
+</html>

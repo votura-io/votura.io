@@ -1,0 +1,4 @@
+/* Loaded only when JavaScript is off: a still of the lattice instead of the animation. */
+.lattice-frame {
+  background: url("../img/lattice.svg") center / contain no-repeat;
+}

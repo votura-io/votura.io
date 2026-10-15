@@ -1,0 +1,10 @@
+Copyright (c) 2026 Votura. All rights reserved.
+
+This repository and its contents are proprietary. This includes the source code, the written content, and the Votura name, logos and other brand assets. No license or other right to copy, modify, distribute or otherwise use any part of it is granted without prior written permission from Votura.
+
+Third-party components in this repository keep their own licenses:
+
+- Sora (public/assets/fonts/sora-*.woff2): SIL Open Font License 1.1, see public/assets/fonts/OFL-Sora.txt
+- Source Serif 4 (public/assets/fonts/source-serif-4-*.woff2): SIL Open Font License 1.1, see public/assets/fonts/OFL-SourceSerif4.txt
+
+Contact: contact@votura.io

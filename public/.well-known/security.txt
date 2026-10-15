@@ -1,0 +1,4 @@
+Contact: mailto:contact@votura.io
+Expires: 2027-10-14T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://votura.io/.well-known/security.txt
